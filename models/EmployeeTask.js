@@ -21,9 +21,12 @@ const EmployeeTaskSchema = new mongoose.Schema({
     min: 1,
     max: 5
   },
+  estimateTime: {
+    type: Number // in hours
+  },
   status: {
     type: String,
-    enum: ['assigned', 'completed', 'failed'],
+    enum: ['assigned', 'in progress', 'completed', 'failed'],
     default: 'assigned'
   }
 });
