@@ -60,6 +60,8 @@ router.put('/fail/:taskId', async (req, res) => {
 // Get all tasks for an employee
 router.get('/employee/:employeeId', async (req, res) => {
   try {
+    console.log(req.params.employeeId);
+    
     const tasks = await EmployeeTask.find({ employeeId: req.params.employeeId });
     res.json(tasks);
   } catch (err) {
@@ -70,6 +72,7 @@ router.get('/employee/:employeeId', async (req, res) => {
 // Get all tasks
 router.get('/all', async (req, res) => {
   try {
+    
     const tasks = await EmployeeTask.find();
     res.json(tasks);
   } catch (err) {
