@@ -1,0 +1,1 @@
+# HR Management App Backend\n\n## Setup\n\n1. Install dependencies:\n\n   npm install\n\n2. Create a .env file with your MongoDB URI (optional):\n\n   MONGO_URI=mongodb://localhost:27017/hr_management\n\n3. Start the server:\n\n   npm start\n
