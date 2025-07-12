@@ -138,9 +138,7 @@ router.put('/continue/:taskId', async (req, res) => {
 // Get all tasks for an employee
 router.get('/employee/:employeeId', async (req, res) => {
   try {
-    console.log(req.params.employeeId);
-    
-    const tasks = await EmployeeTask.find({ employeeId: req.params.employeeId });
+    const tasks = await EmployeeTask.find({ employeeId: req.params.employeeId }).sort({ assignedAt: -1 });
     res.json(tasks);
   } catch (err) {
     res.status(500).json({ error: err.message });
