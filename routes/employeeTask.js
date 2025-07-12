@@ -103,6 +103,38 @@ router.put('/status/:taskId', async (req, res) => {
   }
 });
 
+// Pause a task
+router.put('/pause/:taskId', async (req, res) => {
+  try {
+    const task = await EmployeeTask.findById(req.params.taskId);
+    if (!task) return res.status(404).json({ error: 'Task not found' });
+    if (task.status !== 'assigned' && task.status !== 'in progress') {
+      return res.status(400).json({ error: 'Task cannot be paused' });
+    }
+    task.status = 'paused';
+    await task.save();
+    res.json(task);
+  } catch (err) {
+    res.status(400).json({ error: err.message });
+  }
+});
+
+// Continue a paused task
+router.put('/continue/:taskId', async (req, res) => {
+  try {
+    const task = await EmployeeTask.findById(req.params.taskId);
+    if (!task) return res.status(404).json({ error: 'Task not found' });
+    if (task.status !== 'paused') {
+      return res.status(400).json({ error: 'Task is not paused' });
+    }
+    task.status = 'in progress';
+    await task.save();
+    res.json(task);
+  } catch (err) {
+    res.status(400).json({ error: err.message });
+  }
+});
+
 // Get all tasks for an employee
 router.get('/employee/:employeeId', async (req, res) => {
   try {

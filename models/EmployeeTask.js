@@ -26,7 +26,7 @@ const EmployeeTaskSchema = new mongoose.Schema({
   },
   status: {
     type: String,
-    enum: ['assigned', 'in progress', 'completed', 'failed'],
+    enum: ['assigned', 'in progress', 'paused', 'completed', 'failed'],
     default: 'assigned'
   }
 });
